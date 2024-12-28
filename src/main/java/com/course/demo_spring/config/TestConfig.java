@@ -2,10 +2,12 @@ package com.course.demo_spring.config;
 
 import com.course.demo_spring.entities.Category;
 import com.course.demo_spring.entities.Order;
+import com.course.demo_spring.entities.Product;
 import com.course.demo_spring.entities.User;
 import com.course.demo_spring.entities.enums.OrderStatus;
 import com.course.demo_spring.repositories.CategoryRepository;
 import com.course.demo_spring.repositories.OrderRepository;
+import com.course.demo_spring.repositories.ProductRepository;
 import com.course.demo_spring.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,10 +23,15 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+
     @Autowired
     private OrderRepository orderRepository;
+
     @Autowired
     private CategoryRepository categoryRepository;
+
+    @Autowired
+    private ProductRepository productRepository;
 
 
     @Override
@@ -34,7 +41,16 @@ public class TestConfig implements CommandLineRunner {
         Category category2 = new Category(null, "Books");
         Category category3 = new Category(null, "Computers");
 
+        String description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et quam lobortis, efficitur mauris in, interdum est.";
+
+        Product product1 = new Product(null, "PC Gamer", description, 8000.99, "www.image.com");
+        Product product2 = new Product(null, "Notebook", description, 4000.99, "www.image.com");
+        Product product3 = new Product(null, "English Grammar Book", description, 359.50, "www.image.com");
+        Product product4 = new Product(null, "Gamer Keyboard", description, 200.99, "www.image.com");
+        Product product5 = new Product(null, "The Hobbit", description, 42.50, "www.image.com");
+
         categoryRepository.saveAll(Arrays.asList(category1, category2, category3));
+        productRepository.saveAll(Arrays.asList(product1, product2, product3, product4, product5));
 
         User user1 = new User(null, "leonardo@gmail.com", "Leonardo", "5196242039", "123");
         User user2 = new User(null, "ana@gmail.com", "Ana", "5120245039", "321");

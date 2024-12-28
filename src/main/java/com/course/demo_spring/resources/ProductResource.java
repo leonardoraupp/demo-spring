@@ -1,7 +1,7 @@
 package com.course.demo_spring.resources;
 
-import com.course.demo_spring.entities.Category;
-import com.course.demo_spring.services.CategoryService;
+import com.course.demo_spring.entities.Product;
+import com.course.demo_spring.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,21 +13,21 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value = "/categories")
-public class CategoryResource {
+@RequestMapping(value = "/products")
+public class ProductResource {
 
     @Autowired
-    private CategoryService categoryService;
+    private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAll() {
-        List<Category> list = categoryService.findAll();
+    public ResponseEntity<List<Product>> findAll() {
+        List<Product> list = productService.findAll();
         return ResponseEntity.ok(list);
     }
 
     @GetMapping(value = "{id}")
-    public ResponseEntity<Optional<Category>> findById(@PathVariable Long id) {
-        Optional<Category> category = categoryService.findById(id);
-        return ResponseEntity.ok(category);
+    public ResponseEntity<Optional<Product>> findById(@PathVariable Long id) {
+        Optional<Product> product = productService.findById(id);
+        return ResponseEntity.ok(product);
     }
 }
