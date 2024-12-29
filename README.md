@@ -24,7 +24,7 @@ The created API is RESTful, allowing interaction between different systems throu
     - **com.course.demo_spring.entities**: Package for entities classes.
 
 ## Technologies Used
-- **Spring Boot 3**: Project framework;
+- **Spring Boot 3**: Project framework.
 - **Java 17 LTS**: Core programming language.
 - **H2 Database**: Example memory database used for this project (any other RDBMS can be used).
 - **JPA**: Java API for persistence on database.
