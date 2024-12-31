@@ -1,14 +1,8 @@
 package com.course.demo_spring.config;
 
-import com.course.demo_spring.entities.Category;
-import com.course.demo_spring.entities.Order;
-import com.course.demo_spring.entities.Product;
-import com.course.demo_spring.entities.User;
+import com.course.demo_spring.entities.*;
 import com.course.demo_spring.entities.enums.OrderStatus;
-import com.course.demo_spring.repositories.CategoryRepository;
-import com.course.demo_spring.repositories.OrderRepository;
-import com.course.demo_spring.repositories.ProductRepository;
-import com.course.demo_spring.repositories.UserRepository;
+import com.course.demo_spring.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +26,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
 
     @Override
@@ -72,5 +69,13 @@ public class TestConfig implements CommandLineRunner {
         Order order3 = new Order(null, Instant.parse("2024-12-26T17:31:30Z"), OrderStatus.PAID, user1);
 
         orderRepository.saveAll(Arrays.asList(order1, order2, order3));
+
+        OrderItem orderItem1 = new OrderItem(order1, product1, 1, product1.getPrice());
+        OrderItem orderItem2 = new OrderItem(order2, product2, 1, product2.getPrice());
+        OrderItem orderItem3 = new OrderItem(order2, product4, 1, product4.getPrice());
+        OrderItem orderItem4 = new OrderItem(order3, product3, 1, product3.getPrice());
+        OrderItem orderItem5 = new OrderItem(order3, product5, 1, product5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(orderItem1, orderItem2, orderItem3, orderItem4, orderItem5));
     }
 }

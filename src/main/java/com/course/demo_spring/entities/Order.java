@@ -2,11 +2,12 @@ package com.course.demo_spring.entities;
 
 import com.course.demo_spring.entities.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -24,6 +25,10 @@ public class Order implements Serializable {
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
+
+
+    @OneToMany(mappedBy = "id.order")
+    private List<OrderItem> items = new ArrayList<>();
 
     public Order() {
 
@@ -68,6 +73,10 @@ public class Order implements Serializable {
 
     public void setClient(User client) {
         this.client = client;
+    }
+
+    public List<OrderItem> getItems() {
+        return items;
     }
 
     @Override
