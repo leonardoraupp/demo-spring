@@ -4,12 +4,14 @@
 Spring Boot Project with API
 This project is a web application developed using the Spring Boot framework, with the goal of learning and applying key concepts such as:
 
-- Spring Boot
+- Spring Boot 3
 - JPA (Java Persistence API)
--  Annotations
+- Annotations JPA, Jackson, SpringBoot, Java
 - Class Relationships
 - Object-Relational Mapping
 - Jackson API
+- Maven
+- H2 database
 
 The created API is RESTful, allowing interaction between different systems through HTTP requests.
 
@@ -22,7 +24,7 @@ The created API is RESTful, allowing interaction between different systems throu
     - **com.course.demo_spring.entities**: Package for entities classes.
 
 ## Technologies Used
-- Spring Boot 3
+- **Spring Boot 3**: Project framework.
 - **Java 17 LTS**: Core programming language.
 - **H2 Database**: Example memory database used for this project (any other RDBMS can be used).
 - **JPA**: Java API for persistence on database.
