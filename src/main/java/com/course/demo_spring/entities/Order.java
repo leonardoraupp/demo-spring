@@ -84,6 +84,14 @@ public class Order implements Serializable {
         this.payment = payment;
     }
 
+    public Double getTotal() {
+        double total = 0;
+        for (OrderItem i : items) {
+            total += i.getSubTotal();
+        }
+        return total;
+    }
+
     public Set<OrderItem> getItems() {
         return items;
     }
