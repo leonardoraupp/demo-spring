@@ -3,8 +3,10 @@ package com.course.demo_spring.services;
 
 import com.course.demo_spring.entities.User;
 import com.course.demo_spring.repositories.UserRepository;
+import com.course.demo_spring.services.exceptions.DatabaseException;
 import com.course.demo_spring.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,25 +16,25 @@ import java.util.Optional;
 public class UserService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserRepository repository;
 
     public List<User> findAll() {
-        return userRepository.findAll();
+        return repository.findAll();
     }
 
     public User findById(Long id) {
-        Optional<User> obj = userRepository.findById(id);
+        Optional<User> obj = repository.findById(id);
         return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public User insert(User obj) {
-        return userRepository.save(obj);
+        return repository.save(obj);
     }
 
     public User update(Long id, User obj) {
-        User entity = userRepository.getReferenceById(id);
+        User entity = repository.getReferenceById(id);
         updateData(entity, obj);
-        return userRepository.save(entity);
+        return repository.save(entity);
     }
 
     private void updateData(User entity, User user) {
@@ -42,6 +44,14 @@ public class UserService {
     }
 
     public void delete(Long id) {
-        userRepository.deleteById(id);
+        try {
+            if (repository.existsById(id)) {
+                repository.deleteById(id);
+            } else {
+                throw new ResourceNotFoundException(id);
+            }
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 }
