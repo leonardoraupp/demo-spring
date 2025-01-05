@@ -2,6 +2,7 @@
 
 ## Introduction
 A Spring Boot project with an RESTful API. The project is following MCV(Model View Controller) architecture.
+<br> The project is based on a user entity(customer) and orders with products and items. 
 This web application developed using the Spring Boot framework was built with the goal of learning and applying key concepts such as:
 
 - Spring Boot 3
